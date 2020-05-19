@@ -9,6 +9,8 @@ Key commands/links
      http://127.0.0.1:8000/admin/ // link to admin page of site
 
      pythonanywhere
+
+     python manage.py shell // opens django query shell
 }
 
 General set up:
