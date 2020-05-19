@@ -1,0 +1,89 @@
+Key commands/links
+{
+    myvenv\Scripts\activate // runs the given virtual environment
+
+    python manage.py runserver // runs server
+
+    python manage.py createsuperuser // create admin/superuser
+
+     http://127.0.0.1:8000/admin/ // link to admin page of site
+}
+
+General set up:
+
+Command line:
+
+    1) python -m venv myvenv // makes a virtual environment called myvenv
+
+    2) myvenv\Scripts\activate // runs the given virtual environment
+
+now in virtual environment:
+
+    3) python -m pip install --upgrade pip // installs django to virtual environment
+
+4) then make a requirements.txt with just 'Django~=2.2.4' in it, place in parent folder of virtual environment
+
+Command line (virtual environment):
+
+    5) pip install -r requirements.txt // installs packages from text file
+
+    6) django-admin.exe startproject mysite . // creates skeleton structure/files for site
+
+7) open mysite/settings.py, add 'STATIC_ROOT = os.path.join(BASE_DIR, 'static')' to bottom of file. Change 'ALLOWED_HOSTS = []' to 'ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']'
+
+Command line (virtual environment)
+
+    8) python manage.py migrate // creates database
+
+    9) python manage.py runserver 
+
+    10) python manage.py startapp blog // creates application
+
+11) go back to mysite/settings and change 'INSTALLED APPS = ...' to 
+'INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog.apps.BlogConfig',
+]'
+
+12) open blog/models.py, delete contents and replace with 
+
+'from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+
+class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title'
+
+Command line (virtual environment):
+
+    13) python manage.py makemigrations blog // adds newly created model to database
+
+    14) python manage.py migrate blog // run this again to apply change to database
+
+15) open blog/admin.py, remove contents and replace with 
+
+'from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)'
+
+Command line (virtual environment):
+
+    16) python manage.py createsuperuser // create admin/superuser
