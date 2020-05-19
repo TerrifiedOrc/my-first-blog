@@ -7,6 +7,8 @@ Key commands/links
     python manage.py createsuperuser // create admin/superuser
 
      http://127.0.0.1:8000/admin/ // link to admin page of site
+
+     pythonanywhere
 }
 
 General set up:
@@ -87,3 +89,47 @@ admin.site.register(Post)'
 Command line (virtual environment):
 
     16) python manage.py createsuperuser // create admin/superuser
+
+Command line:
+
+    17) git init
+
+    18) git config --global user.name "name"
+
+    19) git config --global user.name email
+
+    20) git add --all . 
+
+    21) git commit "commit name"
+
+22) add a .gitignore file to the top level folder, add this to it 
+'*.pyc
+*~
+/.vscode
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store'
+
+22) Go to github and make a repo
+
+Command line:
+
+    23) git remote add origin https://github.com/<your-github-username>/my-first-blog.git
+
+    24) git push -u origin master
+
+25) Go to www.pythonanywhere.com, make account. Go to 'Account' button, go to API token and generate new token
+
+26) Go back to dashboard and click Bash console
+
+Bash console:
+
+    27) pip3.6 install --user pythonanywhere
+
+    28) pa_autoconfigure_django.py --python=3.6 https://github.com/<your-github-username>/my-first-blog.git
+
+    29) python manage.py createsuperuser // the local db is separate from the online one, so have to make new admin account
+
+    30) 
