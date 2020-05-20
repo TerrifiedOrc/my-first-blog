@@ -1,13 +1,33 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
+
+{% for post in posts %}
+
+<div class="post">
+    <button class="collapsible" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}<br>{{ post.published_date }}</button>
+    <div class="collapsible-content">
+     <p>{{ post.text|linebreaksbr }}</p>
+ </div>
+</div>
+
+{% endfor %}
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+      } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+      } 
+  });
+  }
+</script>
+
 {% endblock %}
