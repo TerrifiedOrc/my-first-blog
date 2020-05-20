@@ -5,7 +5,7 @@
 {% for post in posts %}
 
 <div class="post">
-    <button class="collapsible" href="{% url 'post_detail' pk=post.pk %}">
+    <button class="collapsible">
         <h1>{{ post.title }}<br>{{ post.published_date }}</h1>
     </button>
     <div class="collapsible-content">

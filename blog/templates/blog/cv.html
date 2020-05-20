@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+<div class="cv_fields">
+ <div class="cv-field">
+  <p for="fname" class="side-by-side">First name: </p>
+  <input type="text" id="fname" name="fname" class="side-by-side" value={{cv.fname}}><br><br>
+</div>
+<div class="cv-field">
+  <p for="lname" class="side-by-side">Last name: </p>
+  <input type="text" id="lname" name="lname" class="side-by-side" value={{cv.lname}}><br><br>
+</div>
+<div class="cv-field-small">
+  <p for="dob" class="side-by-side">Date of birth: </p>
+  <input type="text" id="dob" name="dob" class="side-by-side" value={{cv.dob}}><br><br>
+</div>
+<div class="cv-field-wide">
+  <p for="address" class="side-by-side">Address: </p>
+  <input type="text" id="address" name="address" class="side-by-side" value={{cv.address}}><br><br>
+</div>
+</div>
+
+<script>
+</script>
+
+{% endblock %}
+
+

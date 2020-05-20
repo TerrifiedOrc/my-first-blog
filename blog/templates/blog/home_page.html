@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="btn-toolbar">
+  <form method="get" action="/cv" class="side-by-side">
+    <button class="home_page_button">CV</button>
+  </form>
+  <form method="get" action="/post_list" class="side-by-side">
+    <button class="home_page_button">Blog posts</button>
+  </form>
+</div>
+
+{% endblock %}
