@@ -11,6 +11,16 @@ Key commands/links
      pythonanywhere
 
      python manage.py shell // opens django query shell
+
+     // if you update css, to apply to live site go to a clean bash terminal and enter:
+     {
+
+     workon terrifiedorc.pythonanywhere.com
+
+     then
+
+     python manage.py collectstatic
+     }
 }
 
 General set up:

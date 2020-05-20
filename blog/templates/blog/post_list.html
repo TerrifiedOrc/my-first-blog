@@ -5,10 +5,12 @@
 {% for post in posts %}
 
 <div class="post">
-    <button class="collapsible" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}<br>{{ post.published_date }}</button>
+    <button class="collapsible" href="{% url 'post_detail' pk=post.pk %}">
+        <h1>{{ post.title }}<br>{{ post.published_date }}</h1>
+    </button>
     <div class="collapsible-content">
-     <p>{{ post.text|linebreaksbr }}</p>
- </div>
+       <p>{{ post.text|linebreaksbr }}</p>
+   </div>
 </div>
 
 {% endfor %}

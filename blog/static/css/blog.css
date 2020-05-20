@@ -17,6 +17,7 @@
 }
 
 h1, h2, h3, h4, p {
+    font-size: 20pt;
     color: #ffffff;
     font-family: 'monospace';
 }
@@ -52,12 +53,12 @@ h1, h2, h3, h4, p {
   background-color: #777;
   color: white;
   cursor: pointer;
-  padding: 10px;
+  padding: 0px 0px 0px 20px;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .active, .collapsible:hover {
@@ -70,6 +71,7 @@ h1, h2, h3, h4, p {
   font-weight: bold;
   float: right;
   margin-left: 5px;
+  padding: 0px 0px 0px 20px;
 }
 
 .active:after {
@@ -77,9 +79,15 @@ h1, h2, h3, h4, p {
 }
 
 .collapsible-content {
-  padding: 0 10px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #444;
+  padding: 0px 0px 0px 20px;
+}
+
+.collapsible-content p, .collapsible h1 {
+    color: #ffffff;
+    font-family: 'monospace';
+    font-size: 14pt;
 }
