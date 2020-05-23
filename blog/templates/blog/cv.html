@@ -2,29 +2,132 @@
 
 {% block content %}
 
-
 <div class="cv_fields">
  <div class="cv-field">
   <p for="fname" class="side-by-side">First name: </p>
-  <input type="text" id="fname" name="fname" class="side-by-side" value={{cv.fname}}><br><br>
+  <input type="text" id="fname" name="fname" class="side-by-side" value="{{cv.fname}}"><br><br>
 </div>
 <div class="cv-field">
   <p for="lname" class="side-by-side">Last name: </p>
-  <input type="text" id="lname" name="lname" class="side-by-side" value={{cv.lname}}><br><br>
+  <input type="text" id="lname" name="lname" class="side-by-side" value="{{cv.lname}}"><br><br>
 </div>
 <div class="cv-field-small">
   <p for="dob" class="side-by-side">Date of birth: </p>
-  <input type="text" id="dob" name="dob" class="side-by-side" value={{cv.dob}}><br><br>
+  <input type="text" id="datepicker" name="dob" class="side-by-side" value="{{cv.dob}}"><br><br>
+</div>
+<div class="cv-field">
+  <p for="email" class="side-by-side">Email: </p>
+  <input type="email" id="email" name="email" class="side-by-side" value="{{cv.email}}"><br><br>
 </div>
 <div class="cv-field-wide">
   <p for="address" class="side-by-side">Address: </p>
-  <input type="text" id="address" name="address" class="side-by-side" value={{cv.address}}><br><br>
+  <input type="text" id="address" name="address" class="side-by-side" value="{{cv.address}}"><br><br>
 </div>
+<div class="cv-field">
+  <p for="phone" class="side-by-side">Phone number: </p>
+  <input type="tel" id="phone" name="phone" class="side-by-side" value="{{cv.phone}}"><br><br>
+</div>
+
+<h1 class="side-by-side">Employment history:</h1>  
+<dir class="side-by-side">
+  <form method="POST" action='cv/employment/add'>{% csrf_token %}
+
+    <input type="hidden" id="title" name="title" class="side-by-side" value="No title">
+    <input type="hidden" id="id" name="id" class="side-by-side" value="0">
+    <input type="hidden" id="address" name="address" class="side-by-side" value="none">
+    <input type="hidden" id="desc" name="desc" class="side-by-side" value="none">
+    <input type="hidden" id="skills" name="skills" class="side-by-side" value="none">
+    <input type="hidden" id="startDate" name="startDate" class="side-by-side" value="none">
+    <input type="hidden" id="endDate" name="endDate" class="side-by-side" value="none">
+
+    <button class="add-button" id="add_employment"></button>
+  </form> 
+
+</dir>
+
+<div id="employment_container">
+  {% for employment in employments %}
+  <form method="POST" action='cv/employment/add'>{% csrf_token %}
+
+    <div class="post" id="employment_box">
+      <button type="button" class="collapsible">
+        <div class="cv-field">
+          <p for="title" class="side-by-side">Job title: </p>
+          <input type="text" id="title" name="title" class="side-by-side" value="{{ employment.title }}"><br><br>
+        </div>
+        <input type="hidden" id="id" name="id" value="{{ employment.id }}"><br><br>
+      </button>
+      <div class="collapsible-content">
+        <div class="cv-field">
+          <p for="address" class="side-by-side">Address: </p>
+          <input type="text" id="address" name="address" class="side-by-side" value="{{ employment.address|linebreaksbr }}"><br><br>
+        </div>
+        <div class="cv-field">
+          <p for="desc" class="side-by-side">Description: </p>
+          <input type="text" id="desc" name="desc" class="side-by-side" value=" {{ employment.desc|linebreaksbr }}"><br><br>
+        </div>
+        <div class="cv-field">
+          <p for="skills" class="side-by-side">Skills: </p>
+          <input type="text" id="skills" name="skills" class="side-by-side" value="{{ employment.skills|linebreaksbr }}"><br><br>
+        </div>
+        <div class="cv-field">
+          <p for="startDate" class="side-by-side">Start date: </p>
+          <input type="text" id="startDate" name="startDate" class="side-by-side" value="{{ employment.startDate|linebreaksbr }}"><br><br>
+        </div>
+        <div class="cv-field">
+          <p for="endDate" class="side-by-side">End date: </p>
+          <input type="text" id="endDate" name="endDate" class="side-by-side" value="{{ employment.endDate|linebreaksbr }}"><br><br>
+        </div>
+        <button class="add-button">Save </button>
+      </form>
+      <br>
+      <br>
+      <form method="POST" action='cv/employment/{{employment.id}}/delete'>{% csrf_token %}
+        <button type="submit" class="delete-button">Delete </button>
+      </form>
+    </div>
+  </div>
+
+  {% endfor %}
 </div>
 
 <script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  }
+</script>
+
+<script>
+  $(document).ready(function(){
+    $("#add_employment").click(function(){
+     $("#employment_box").clone().appendTo("#employment_container");
+
+     var coll = document.getElementsByClassName("collapsible");
+
+     coll[coll.length-1].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+
+
+   });
+  });
 </script>
 
 {% endblock %}
-
-

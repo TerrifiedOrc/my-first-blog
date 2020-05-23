@@ -6,21 +6,26 @@ Key commands/links
 
     python manage.py createsuperuser // create admin/superuser
 
-     http://127.0.0.1:8000/admin/ // link to admin page of site
+    http://127.0.0.1:8000/admin/ // link to admin page of site
 
-     pythonanywhere
+    pythonanywhere
 
-     python manage.py shell // opens django query shell
+    python manage.py shell // opens django query shell
 
-     // if you update css, to apply to live site go to a clean bash terminal and enter:
-     {
+    // if you update css, to apply to live site go to a clean bash terminal and enter:
+    {
 
-     workon terrifiedorc.pythonanywhere.com
+    workon terrifiedorc.pythonanywhere.com
 
-     then
+    then
 
-     python manage.py collectstatic
-     }
+    python manage.py collectstatic
+    }
+
+
+    python manage.py makemigrations blog // adds newly created model to database
+
+    python manage.py migrate blog // run this again to apply change to database
 }
 
 General set up:

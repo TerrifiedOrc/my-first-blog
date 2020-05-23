@@ -13,7 +13,8 @@
 
 .main-body {
   background-color: #222;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden; 
 }
 
 .home_page_button {
@@ -115,8 +116,49 @@ h1, h2, h3, h4, p {
   color: white;
   font-weight: bold;
   float: right;
-  margin-left: 5px;
-  padding: 0px 0px 0px 20px;
+}
+
+.delete-button {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+input {
+   background-color: #777;
+}
+
+.delete-button:after {
+  content: '\2716';
+}
+
+.add-button {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.add-button:after {
+  content: '\002B';
+}
+
+.home_page_button {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 40px 40px 40px 40px;
+  width: 300px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 30px;
+  margin-right: 20px;
 }
 
 .active:after {

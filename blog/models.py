@@ -21,32 +21,22 @@ class Post(models.Model):
 class CV(models.Model):
     fname = models.CharField(max_length=200)
     lname = models.CharField(max_length=200)
-    dob = models.DateTimeField(blank=True, null=True)
+    dob = models.CharField(default="21/03/1999", max_length=200)
     email = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    employment = []
-
-    created_date = models.DateTimeField(default=timezone.now)
-    last_updated = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.last_updated = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return self.fname + " " + self.lname + "'s CV"
+    address = models.TextField(default="", max_length=200)
+    phone = models.CharField(default="", max_length=200)
 
 class Employment(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     desc = models.CharField(max_length=200)
     skills = models.CharField(max_length=200)
-    startDate = models.DateTimeField(blank=True, null=True)
-    endDate = models.DateTimeField(blank=True, null=True)
+    startDate = models.TextField(blank=True, null=True)
+    endDate = models.TextField(blank=True, null=True)
+    foreignKey = models.ForeignKey(CV, default="", on_delete=models.CASCADE)
 
 class Education(models.Model):
-    qualifications = []
     address = models.CharField(max_length=200)
-    startDate = models.DateTimeField(blank=True, null=True)
-    endDate = models.DateTimeField(blank=True, null=True)
+    startDate = models.TextField(blank=True, null=True)
+    endDate = models.TextField(blank=True, null=True)
+    foreignKey = models.ForeignKey(CV, default="", on_delete=models.CASCADE)
