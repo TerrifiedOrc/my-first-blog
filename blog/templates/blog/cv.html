@@ -72,11 +72,11 @@
         </div>
         <div class="cv-field">
           <p for="startDate" class="side-by-side">Start date: </p>
-          <input type="text" id="startDate" name="startDate" class="side-by-side" value="{{ employment.startDate|linebreaksbr }}"><br><br>
+          <input type="text" id="datepicker1{{employment.id}}" name="startDate" class="side-by-side" value="{{ employment.startDate|linebreaksbr }}"><br><br>
         </div>
         <div class="cv-field">
           <p for="endDate" class="side-by-side">End date: </p>
-          <input type="text" id="endDate" name="endDate" class="side-by-side" value="{{ employment.endDate|linebreaksbr }}"><br><br>
+          <input type="text" id="datepicker2{{employment.id}}" name="endDate" class="side-by-side" value="{{ employment.endDate|linebreaksbr }}"><br><br>
         </div>
         <button class="add-button">Save </button>
       </form>
@@ -87,6 +87,19 @@
       </form>
     </div>
   </div>
+
+    <script>
+      $( function() {
+        $( "#datepicker1{{employment.id}}" ).datepicker();
+
+    } );
+</script>
+
+    <script>
+      $( function() {
+        $( "#datepicker2{{employment.id}}" ).datepicker();
+    } );
+</script>
 
   {% endfor %}
 </div>
