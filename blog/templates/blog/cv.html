@@ -2,6 +2,34 @@
 
 {% block content %}
 
+<script>
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate() {
+  var $result = $("#result");
+  var email = $("#email").val();
+  $result.text("");
+
+  if (validateEmail(email)) {
+    $result.text(email + " is valid :)");
+    $result.css("color", "green");
+  } else {
+    $result.text(email + " is not valid :(");
+    $result.css("color", "red");
+  }
+  return false;
+}
+
+$("#validate").on("click", validate);
+</script>
+
+
+
+<h2 id='result'></h2>
+
 <form method="POST" action='cv/update_personal_details'>{% csrf_token %}
   <div class="cv_fields">
    <div class="cv-field">
@@ -28,7 +56,7 @@
     <p for="phone" class="side-by-side">Phone number: </p>
     <input type="tel" id="phone" name="phone" class="side-by-side" value="{{cv.phone}}"><br><br>
   </div>
-    <button class="add-button" tpye="submit">Save personal details </button><br>
+    <button class="add-button" type="submit" id='validate'>Save personal details </button><br>
 </form>
 
 <h1 class="side-by-side">Employment history:</h1>  
