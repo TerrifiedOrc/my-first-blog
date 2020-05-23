@@ -11,6 +11,10 @@
   text-decoration: none;
 }
 
+textarea {
+  resize: none;
+}
+
 .main-body {
   background-color: #222;
   overflow-y: auto;

@@ -72,8 +72,8 @@
         <input type="text" id="address" name="address" class="side-by-side" value="{{employment.address|linebreaksbr}}"><br><br>
       </div>
       <div class="cv-field">
-        <p for="desc" class="side-by-side">Description: </p>
-        <input type="text" id="desc" name="desc" class="side-by-side" value="{{employment.desc|linebreaksbr}}"><br><br>
+        <p for="desc" class="side-by-side">Description: <br><br><br></p>
+        <textarea rows="6" cols="100" type="text" id="desc" name="desc" class="side-by-side">{{employment.desc|linebreaksbr}}</textarea><br><br>
       </div>
       <div class="cv-field">
         <p for="skills" class="side-by-side">Skills: </p>
@@ -151,8 +151,8 @@
           <input type="text" id="address" name="address" class="side-by-side" value="{{education.address|linebreaksbr }}"><br><br>
         </div>
         <div class="cv-field">
-          <p for="desc" class="side-by-side">Description: </p>
-          <input type="text" id="desc" name="desc" class="side-by-side" value="{{education.desc|linebreaksbr }}"><br><br>
+          <p for="desc" class="side-by-side">Description: <br><br><br></p>
+          <textarea rows="6" cols="100" type="text" id="desc" name="desc" class="side-by-side">{{education.desc|linebreaksbr }}</textarea><br><br>
         </div>
         <div class="cv-field">
           <p for="startDate" class="side-by-side">Start date: </p>
