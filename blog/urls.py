@@ -8,4 +8,6 @@ path('post_list', views.post_list, name='post_list'),
 path('cv', views.cv, name='cv'),
 path('cv/employment/<int:id>/delete', views.employment_delete, name='employment_delete'),
 path('cv/employment/add', views.employment_add, name='employment_add'),
+path('cv/education/<int:id>/delete', views.education_delete, name='education_delete'),
+path('cv/education/add', views.education_add, name='education_add'),
 ]

@@ -18,12 +18,17 @@ def employment(request, id):
 def cv(request):
     cv = CV.objects.all()[:1].get()
     employments = []
+    educations = []
 
     for employment in Employment.objects.all():
         if (employment.foreignKey == cv):
             employments.append(employment)
 
-    return render(request, 'blog/cv.html', {'cv': cv, 'employments': employments})
+    for education in Education.objects.all():
+        if (education.foreignKey == cv):
+            educations.append(education)
+
+    return render(request, 'blog/cv.html', {'cv': cv, 'employments': employments, 'educations': educations})
 
 def home_page(request):
     return render(request, 'blog/home_page.html')
@@ -59,4 +64,32 @@ def employment_add(request):
         desc=desc, skills=skills, startDate=startDate,
         endDate=endDate,foreignKey=foreignKey)
         employment.save()
+    return redirect('cv')
+
+def education_delete(request, id):
+    obj = get_object_or_404(Education, id=id)
+    if request.method == "POST":
+        obj.delete()
+    return redirect('cv')
+
+def education_add(request):
+    id = request.POST["id"]
+    if id != '0':
+        education = get_object_or_404(Education, id=id)
+        education.desc = request.POST["desc"]
+        education.address = request.POST["address"]
+        education.startDate = request.POST["startDate"]
+        education.endDate = request.POST["endDate"]
+        education.foreignKey = CV.objects.all()[:1].get()
+        education.save()
+    else:
+        desc = request.POST["desc"]
+        address = request.POST["address"]
+        startDate = request.POST["startDate"]
+        endDate = request.POST["endDate"]
+        foreignKey = CV.objects.all()[:1].get()
+
+        education = Education(desc=desc, address=address,
+            startDate=startDate, endDate=endDate, foreignKey=foreignKey)
+        education.save()
     return redirect('cv')

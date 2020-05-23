@@ -36,6 +36,7 @@ class Employment(models.Model):
     foreignKey = models.ForeignKey(CV, default="", on_delete=models.CASCADE)
 
 class Education(models.Model):
+    desc = models.TextField(default="", max_length=200)
     address = models.CharField(max_length=200)
     startDate = models.TextField(blank=True, null=True)
     endDate = models.TextField(blank=True, null=True)
