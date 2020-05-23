@@ -93,3 +93,14 @@ def education_add(request):
             startDate=startDate, endDate=endDate, foreignKey=foreignKey)
         education.save()
     return redirect('cv')
+
+def update_personal_details(request):
+    cv = CV.objects.all()[:1].get()
+    cv.fname = request.POST["fname"]
+    cv.lname = request.POST["lname"]
+    cv.dob = request.POST["dob"]
+    cv.email = request.POST["email"]
+    cv.address = request.POST["address"]
+    cv.phone = request.POST["phone"]
+    cv.save()
+    return redirect('cv')

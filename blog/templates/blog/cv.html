@@ -2,31 +2,34 @@
 
 {% block content %}
 
-<div class="cv_fields">
- <div class="cv-field">
-  <p for="fname" class="side-by-side">First name: </p>
-  <input type="text" id="fname" name="fname" class="side-by-side" value="{{cv.fname}}"><br><br>
-</div>
-<div class="cv-field">
-  <p for="lname" class="side-by-side">Last name: </p>
-  <input type="text" id="lname" name="lname" class="side-by-side" value="{{cv.lname}}"><br><br>
-</div>
-<div class="cv-field-small">
-  <p for="dob" class="side-by-side">Date of birth: </p>
-  <input type="text" id="datepicker" name="dob" class="side-by-side" value="{{cv.dob}}"><br><br>
-</div>
-<div class="cv-field">
-  <p for="email" class="side-by-side">Email: </p>
-  <input type="email" id="email" name="email" class="side-by-side" value="{{cv.email}}"><br><br>
-</div>
-<div class="cv-field-wide">
-  <p for="address" class="side-by-side">Address: </p>
-  <input type="text" id="address" name="address" class="side-by-side" value="{{cv.address}}"><br><br>
-</div>
-<div class="cv-field">
-  <p for="phone" class="side-by-side">Phone number: </p>
-  <input type="tel" id="phone" name="phone" class="side-by-side" value="{{cv.phone}}"><br><br>
-</div>
+<form method="POST" action='cv/update_personal_details'>{% csrf_token %}
+  <div class="cv_fields">
+   <div class="cv-field">
+    <p for="fname" class="side-by-side">First name: </p>
+    <input type="text" id="fname" name="fname" class="side-by-side" value="{{cv.fname}}"><br><br>
+  </div>
+  <div class="cv-field">
+    <p for="lname" class="side-by-side">Last name: </p>
+    <input type="text" id="lname" name="lname" class="side-by-side" value="{{cv.lname}}"><br><br>
+  </div>
+  <div class="cv-field-small">
+    <p for="dob" class="side-by-side">Date of birth: </p>
+    <input type="text" id="datepicker" name="dob" class="side-by-side" value="{{cv.dob}}"><br><br>
+  </div>
+  <div class="cv-field">
+    <p for="email" class="side-by-side">Email: </p>
+    <input type="email" id="email" name="email" class="side-by-side" value="{{cv.email}}"><br><br>
+  </div>
+  <div class="cv-field-wide">
+    <p for="address" class="side-by-side">Address: </p>
+    <input type="text" id="address" name="address" class="side-by-side" value="{{cv.address}}"><br><br>
+  </div>
+  <div class="cv-field">
+    <p for="phone" class="side-by-side">Phone number: </p>
+    <input type="tel" id="phone" name="phone" class="side-by-side" value="{{cv.phone}}"><br><br>
+  </div>
+    <button class="add-button" tpye="submit">Save personal details </button><br>
+</form>
 
 <h1 class="side-by-side">Employment history:</h1>  
 <dir class="side-by-side">
